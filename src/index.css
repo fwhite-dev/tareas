@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  #root {
+    @apply h-screen w-screen bg-[#F2F2F2] flex justify-center items-center;
+  }
+  .contenedor {
+    @apply max-w-[700px] w-full h-full max-h-[90vh] shadow-[0px_2px_10px_rgba(139,139,139,0.25)] rounded-sm;
+  }
+  .header {
+    @apply flex items-center justify-between h-[60px] px-[20px] bg-blue-400 text-white rounded-sm;
+  }
+  .fomulario-tareas {
+    @apply flex items-center justify-between relative p-[20px] shadow-[0_2px_10px_rgba(139,139,139,0.25)];
+  }
+  .fomulario-tareas input {
+    @apply p-[15px] w-full text-[20px] border-[2px] border-[#b8b8b8]  focus:border-[#004c92] focus:outline-none;
+  }
+}
