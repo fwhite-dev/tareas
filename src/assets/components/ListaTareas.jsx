@@ -13,6 +13,25 @@ export const ListaTareas = ({ tareas, setTareas }) => {
             return tarea
         }))
     }
+    const editarTarea = (id, nuevaTexto) => {
+
+        setTareas(tareas.map((tarea) => {
+            if (tarea.id === id) {
+                return { ...tarea, texto: nuevaTexto }
+            }
+            return tarea
+        }))
+    }
+
+    const borrarTarea = (id) => {
+        setTareas(tareas.filter((tarea) => {
+            if (tarea.id !== id) {
+                return tarea
+            }
+            return
+        }))
+    }
+
 
     return (
         <ul>
@@ -21,6 +40,8 @@ export const ListaTareas = ({ tareas, setTareas }) => {
                     return <Tarea key={tarea.id}
                         tarea={tarea}
                         toggleCompletada={toggleCompletada}
+                        editarTarea={editarTarea}
+                        borrarTarea={borrarTarea}
                     />
                 })
                 : <div className="lista-tareas__mensaje">No hay tareas agregadas</div>

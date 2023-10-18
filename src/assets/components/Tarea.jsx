@@ -6,13 +6,14 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { useState } from "react";
 
 
-export const Tarea = ({ tarea, toggleCompletada }) => {
+export const Tarea = ({ tarea, toggleCompletada, editarTarea, borrarTarea }) => {
 
     const [editar, setEditar] = useState(false)
     const [nuevaTarea, setNuevaTarea] = useState(tarea.texto)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        editarTarea(tarea.id, nuevaTarea)
         setEditar(false)
     }
 
@@ -47,7 +48,7 @@ export const Tarea = ({ tarea, toggleCompletada }) => {
                 </div>
                 <div className="flex">
                     <AiOutlineEdit onClick={() => setEditar(!editar)} className="text-[25px] ml-[10px]" />
-                    <AiOutlineDelete className="text-[25px] ml-[10px]" />
+                    <AiOutlineDelete className="text-[25px] ml-[10px]" onClick={() => borrarTarea(tarea.id)} />
                 </div>
             </li>
         </div>
