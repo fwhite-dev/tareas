@@ -2,7 +2,7 @@
 import { Tarea } from './Tarea'
 
 
-export const ListaTareas = ({ tareas, setTareas }) => {
+export const ListaTareas = ({ tareas, setTareas, mostarCompletadas }) => {
 
     const toggleCompletada = (id) => {
 
@@ -37,12 +37,24 @@ export const ListaTareas = ({ tareas, setTareas }) => {
         <ul>
             {tareas.length > 0 ?
                 tareas.map((tarea) => {
-                    return <Tarea key={tarea.id}
-                        tarea={tarea}
-                        toggleCompletada={toggleCompletada}
-                        editarTarea={editarTarea}
-                        borrarTarea={borrarTarea}
-                    />
+                    if (mostarCompletadas) {
+                        return <Tarea
+                            key={tarea.id}
+                            tarea={tarea}
+                            toggleCompletada={toggleCompletada}
+                            editarTarea={editarTarea}
+                            borrarTarea={borrarTarea}
+                        />
+                    } else if (!tarea.completada) {
+                        return <Tarea
+                            key={tarea.id}
+                            tarea={tarea}
+                            toggleCompletada={toggleCompletada}
+                            editarTarea={editarTarea}
+                            borrarTarea={borrarTarea}
+                        />
+                    }
+                    return
                 })
                 : <div className="lista-tareas__mensaje">No hay tareas agregadas</div>
             }
