@@ -1,18 +1,23 @@
 import { FormularioTareas } from "./assets/components/FormularioTareas"
 import { Header } from "./assets/components/Header"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ListaTareas } from "./assets/components/ListaTareas"
 
 
 function App() {
 
-  const [tareas, setTareas] = useState(
-    [
+  const tareasGuardadas = localStorage.getItem('tareas')
+    ?
+    JSON.parse(localStorage.getItem('tareas'))
+    : []
 
-    ]
-  )
+  const [tareas, setTareas] = useState(tareasGuardadas)
 
-  const [mostrarCompletadas, setMostrarCompletadas] = useState(false)
+  useEffect(() => {
+    localStorage.setItem('tareas', JSON.stringify(tareas))
+  }, [tareas])
+
+  const [mostrarCompletadas, setMostrarCompletadas] = useState(true)
 
   return (
     <>
